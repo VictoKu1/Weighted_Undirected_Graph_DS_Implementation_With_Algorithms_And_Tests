@@ -1,4 +1,4 @@
-# OOP Course Exercise 1 Submission
+# OOP Course Exercise 1 .
 
 ##### @author: Victor.Kushnir
 
