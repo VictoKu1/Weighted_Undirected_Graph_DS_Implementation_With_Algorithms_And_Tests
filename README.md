@@ -1,4 +1,4 @@
-# OOP Course Exercise 1 Commitment
+# OOP Course Exercise 1 Submission
 
 ##### @author: Victor.Kushnir
 
