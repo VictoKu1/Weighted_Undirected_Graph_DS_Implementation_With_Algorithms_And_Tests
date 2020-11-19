@@ -67,6 +67,7 @@ Mainly works using two HashMap data structures (mainly to achieve O(1) time comp
 5. **String uniqueKey** - unique string for any graph that is built from 7 randomly chosen characters which are being generated from range 0-128  ( so it is 128^7 possible combinations for every graph) every time a change is being committed to the graph. 
 
 ###                 Methods :
+
 * **WGraph_DS()** - Constructor method for WGrpah_DS class mainly sets all the parameters to their default values, generates a 7 digit 128-bit unique key for this graph, and makes the HashMap of contained nodes a new data structure object.
 * **void ranGenerateNewUniqueKey()** - Method which is generating a new unique key for the graph with every its change (numOfChanges parameter increment), each time this method generates 7 characters 128-bit unique String, therefore there are 128^7 possibilities for each key.
 * **node_info getNode(int key)** - Returns the node_info by the  given node_id, return null if there is no such node in the grpah . Runs in O(1) complexity .
@@ -87,7 +88,36 @@ Mainly works using two HashMap data structures (mainly to achieve O(1) time comp
 * **void setUniqueKey(String copiedKey, int securityKey)** - Method used in .copy() method WGraph_Algo class to make the copied graph have identical 7 digits 128-bit key, has a security check to avoid illegal using of the method.
 
 
+## WGraph_Algo
 
+###                 Abstract Description :
 
- 
+WGraph__Algo class which is implementing weighted_graph_algorithms interface mainly represents a class with a set of basic methods that might get applied to a weighted graph data structure.
 
+###                 Contained parameters : 
+
+1. Parameter of a WGraph_DS class which is implementing weighted_grpah_algorithms.
+
+###                 Methods :
+
+* **WGraph_Algo()** - Constructor method which initializes as new WGraph_DS object the weighted_graph g parameter .
+* **void init(weighted_graph g)** - Method which makes the parameter this.g to point on the inputted graph g.
+* **weighted_graph getGraph()** - Method which returns a pointer to the this.g graph this class is working on.
+* **weighted_graph copy()** - Method computes and returns a deep copy of this.g graph, using two helping method , void copyNodes(weighted_graph target)- which copy this.g graph nodes to the given graph . and void copyEdges(weighted_graph target) - which copy this.g edges to the given graph, also fakes the unique key of the graph by providing the secret security key to the setUniqueKey(String copiedKey, int security) method in WGraph_DS class.
+* **void copyNodes(weighted_graph target)** - Helping method which copy this.g graph nodes to the given graph .
+* **void copyEdges(weighted_graph target)** - Helping method which copy this.g edges to the given graph .
+* **boolean isConnected()** - Returns true if and only if (iff) there is a valid path from EVREY node to each other node. The method uses BFSFromNode(int src) method to try to pass all over the nodes and mark its Info parameter to "V", and afterward check if the nodes in the graph have changed their Info parameter to "V" using allTheInfosAreV() helper checking method. The method is using the Iterator interface.
+* **boolean allTheInfosAreV()** - Privately accessed helper method, used to check if all nodes in the graph changed their Info parameter to "V" as a mark of being checked in the BFSFromNode(int src) algorithm to know if there is a path from every node to every other node.
+* **void BFSFromNode(int src)** - Helper method that is implementing BFS algorithm from a node which key is src, using LinkedList data structure as a Queue data structure.
+* **void adjacentsEnque(LinkedList<node_info> nodeQueue, Collection<node_info> nodeArray)** - Helper method that is used in BFSFromNode(int src) method to add the nodeArray contained parameters to nodeQueue, the adding is produced using Iterator interface .
+* **void setParentOfEveryNodeInGraphToDefault()** - Helper method that it used after the Dijkstra algorithm to set all the parent parameters to default value null .
+* **void setTagAndInfoOfEveryNodeInGraphToDefault()** - Helper method that is used after the BFS algorithm to set all Node's Infos and Tags parameters to default ("") and (-1) .
+* **void setTagAndInfo(node_info n)** - Helper method to a helper method that sets all Node's Infos and Tags parameters to default ("") and (-1) .
+* **double shortestPathDist(int src, int dest)** - Returns the length of the shortest path between src to dest using Dijkstra(int src) method and as a little help also the BFS algorithm to avoid entering nodes that have no path to the destination node.
+* **void Dijkstra(int src)** - Method is implementing Dijkstra algorithm from the given node key all over the graph. It starts on the given node key, changing it tag parameter to 0 and then adding it to the queue with all of its adjacent nodes, avoiding those who are marked by the previously used BFS algorithm as unconnected and sets all the connected nodes which tag is higher than the parent tag summarized with the weight of the edge between them, tag parameter to the tag parameter of their current parent node summarized with the weight of the node between them, and getting the parent node out of the queue, and providing the same procedure with the new head of the queue, and so on until the queue is empty, then the method stops.
+* **void addToQueueEachAdjacentNodeWhichIsConnectedSomehowToTheDest(LinkedList<node_info> queue, node_info parent)** - Helping method for Dijkstra(int src) method which adds new nodes to the algorithm queue dependently if its tag parameter is lower than the tag of parent summarized with the weight of the node between them and if the node is determined as valid by the previously produced BFS algorithm. Mainly exist to make Dijkstra(int src) method more readable.
+* **void setTheDistancesToInf()** - Helping method to the Dijkstra(int src) method, which is marking all the tags of all nodes in the graph to infinity.
+* **List<node_info> shortestPath(int src, int dest)** - Returns the shortest path between src to dest - as an ordered list of nodes, mainly using the Dijkstra(int src) method, works the same as the shortestPathDist(int src, int dest) method but instead of returning the distance it returns a List<node_info> which is built by passing from the dest to the src of the path right after the Dijkstra(int src) method stops working, each node_info has a node_info parent parameter which points to the parent node which was determined as the best option to find the shortest path by  Dijkstra(int src) method, at the end of the method all of the node parameters like info, tag and parent are being set to their default values.
+* **void buildPath(LinkedList<node_info> path, int src, int dest)** - Helping method which is used after the running of Dijkstra(int src) method in shortestPath(int src, int dest), this method is building a path from the destination node to the source, using LinkedList ability to add parameters to the end of the list and therefore "inverting" the order so it will return as a list of a route from the source to the destination node. The building is simply adding each node (starting at the destination node) parent parameter to the list which is being determined by the Dijkstra(int src) method.
+* **boolean save(String file)** - Saves this weighted (undirected) graph to the given file name using Serialized interface implemented by WGraph_DS and NodeInfo classes.
+* **boolean load(String file)** - This method load a graph to this graph algorithm. If the file was successfully loaded - the underlying graph of this class will be changed (to the loaded one), in case the graph was not loaded the original graph should remain "as is". This method is using the equals method in WGraph_DS class, in case the uploaded graph is equal to the already contained in this class graph the graph will not get updated. Returns true if the graph was uploaded successfully, false otherwise. 

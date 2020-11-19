@@ -2,8 +2,6 @@ package ex1;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Test_Algo {
 
+     /*
+     * Visualization of the graph that is being built in the following method: https://ibb.co/j5nLD42 .
+     */
     weighted_graph pathTestGraphCreator() {
         weighted_graph g = new WGraph_DS();
         g.addNode(0);

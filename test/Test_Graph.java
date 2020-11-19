@@ -158,15 +158,15 @@ public class Test_Graph {
     @Test
     void equals() {
         weighted_graph g1 = oneCenterGraphConstructor(149, 25, 15);
-//        weighted_graph g2 = oneCenterGraphConstructor(149, 25, 15);
-//        weighted_graph g3 = oneCenterGraphConstructor(149, 27, 15);
-//        weighted_graph g4 = oneCenterGraphConstructor(149, 25, 7);
-//        weighted_graph g5 = oneCenterGraphConstructor(147, 25, 15);
+        weighted_graph g2 = oneCenterGraphConstructor(149, 25, 15);
+        weighted_graph g3 = oneCenterGraphConstructor(149, 27, 15);
+        weighted_graph g4 = oneCenterGraphConstructor(149, 25, 7);
+        weighted_graph g5 = oneCenterGraphConstructor(147, 25, 15);
         assertTrue(g1.equals(g1));
-//        assertTrue(g1.equals(g2));
-//        assertFalse(g1.equals(g3));
-//        assertFalse(g1.equals(g4));
-//        assertFalse(g1.equals(g5));
+        assertTrue(g1.equals(g2));
+        assertFalse(g1.equals(g3));
+        assertFalse(g1.equals(g4));
+        assertFalse(g1.equals(g5));
     }
 
 
