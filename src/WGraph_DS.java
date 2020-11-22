@@ -370,8 +370,8 @@ public class WGraph_DS implements weighted_graph, Serializable {
         if (this == compared) {
             return true;
         }
-        if (compared instanceof weighted_graph) {
-            if (((weighted_graph) compared).nodeSize() == this.nodeSize() && ((weighted_graph) compared).edgeSize() == this.edgeSize()) {
+        if (compared instanceof weighted_graph && compared instanceof WGraph_DS) {
+            if (((WGraph_DS) compared).nodeSize() == this.nodeSize() && ((WGraph_DS) compared).edgeSize() == this.edgeSize()) {
                 if (this.uniqueKey.equals(((WGraph_DS) compared).getUniqueKey())) {
                     return true;
                 }
@@ -388,10 +388,10 @@ public class WGraph_DS implements weighted_graph, Serializable {
                             return false;
                         }
                     }
-
                 }
                 return true;
             }
+            return false;
         }
         return false;
     }
