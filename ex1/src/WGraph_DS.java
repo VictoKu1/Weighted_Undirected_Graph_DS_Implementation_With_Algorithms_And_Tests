@@ -213,6 +213,9 @@ public class WGraph_DS implements weighted_graph, Serializable {
         if (this.getNode(node1) == null || this.getNode(node2) == null) {
             return false;
         }
+        if (node1 == node2) {
+            return true;
+        }
         return ((NodeInfo) (this.getNode(node1))).hasNi(this.getNode(node2));
     }
 
@@ -222,6 +225,9 @@ public class WGraph_DS implements weighted_graph, Serializable {
     @Override
     public double getEdge(int node1, int node2) {
         if (hasEdge(node1, node2)) {
+            if (node1 == node2) {
+                return 0;
+            }
             return ((NodeInfo) this.getNode(node1)).getDistancesHashMap().get(getNode(node2));
         }
         return -1.0;

@@ -1,7 +1,7 @@
 package ex1.tests;
 
 import org.junit.jupiter.api.Test;
-
+import ex1.src.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Test_Algo {
 
-     /*
+    /*
      * Visualization of the graph that is being built in the following method: https://ibb.co/j5nLD42 .
      */
     weighted_graph pathTestGraphCreator() {
@@ -114,8 +114,8 @@ public class Test_Algo {
         weighted_graph g1 = wga.copy();
         weighted_graph_algorithms wga1 = new WGraph_Algo();
         wga.load(str);
-        assertEquals(g1,wga.getGraph());
+        assertEquals(g1, wga.getGraph());
         g1.removeNode(0);
-        assertNotEquals(g1,wga.getGraph());
+        assertNotEquals(g1, wga.getGraph());
     }
 }

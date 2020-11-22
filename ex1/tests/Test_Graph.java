@@ -1,7 +1,7 @@
 package ex1.tests;
 
 import org.junit.jupiter.api.Test;
-
+import ex1.src.*;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -156,16 +156,37 @@ public class Test_Graph {
     }
 
     @Test
-    void equals() {
+    void equalsWithItself() {
+        weighted_graph g1 = oneCenterGraphConstructor(149, 25, 15);
+        assertTrue(g1.equals(g1));
+
+    }
+
+    @Test
+    void equalsWithEqual() {
         weighted_graph g1 = oneCenterGraphConstructor(149, 25, 15);
         weighted_graph g2 = oneCenterGraphConstructor(149, 25, 15);
-        weighted_graph g3 = oneCenterGraphConstructor(149, 27, 15);
-        weighted_graph g4 = oneCenterGraphConstructor(149, 25, 7);
-        weighted_graph g5 = oneCenterGraphConstructor(147, 25, 15);
-        assertTrue(g1.equals(g1));
         assertTrue(g1.equals(g2));
+    }
+
+    @Test
+    void equalsWithNotEqualNumberOfEdges() {
+        weighted_graph g1 = oneCenterGraphConstructor(149, 25, 15);
+        weighted_graph g3 = oneCenterGraphConstructor(149, 27, 15);
         assertFalse(g1.equals(g3));
+    }
+
+    @Test
+    void equalsWithNotEqualDistances() {
+        weighted_graph g1 = oneCenterGraphConstructor(149, 25, 15);
+        weighted_graph g4 = oneCenterGraphConstructor(149, 25, 7);
         assertFalse(g1.equals(g4));
+    }
+
+    @Test
+    void equalsWithNotEqualNumOfNodes() {
+        weighted_graph g1 = oneCenterGraphConstructor(149, 25, 15);
+        weighted_graph g5 = oneCenterGraphConstructor(147, 25, 15);
         assertFalse(g1.equals(g5));
     }
 
