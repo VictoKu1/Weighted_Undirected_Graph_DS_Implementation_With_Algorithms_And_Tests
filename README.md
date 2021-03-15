@@ -1,7 +1,5 @@
 # OOP Course Exercise 1: Weighted Undirected Graph DS Implementation With Algorithms And Tests .
-
 ##### @author: Victor.Kushnir
-
 The following project represents a data structure for an undirected, weighted graph.
 
 2 classes are implementing 3 interfaces. The main data structure that was used in this project is a HashMap due to the O(1) best-average case searching runtime complexity.
@@ -55,11 +53,9 @@ Mainly works using two HashMap data structures (mainly to achieve O(1) time comp
 ## WGraph_DS
 
 ###                 Abstract Description :
-
  This class represents a weighted undirected graph data structure, this class mainly built from one HashMap data structure, which contains all the nodes in the graph, this class is implementing two interfaces, the first one is weighted__grpah which is used to tell the general structure of the class and Serializable interface which is used in the algorithm class to stream an object of a type WGraph_DS to and from a file.
 
 ###                 Contained parameters :
-
 1. **HashMap<Integer, node_info> nodeHash** - mainly used to contain the nodes in the graph and produce a search in O(1) complexity. 
 2. **int numOfChanges** - a parameter which represents the number of changes which was provided on the graph (like adding/removing a node and connecting two nodes ). 
 3. **int numOfEdges** - a parameter that represents the number of edges in the graph. 
@@ -67,7 +63,6 @@ Mainly works using two HashMap data structures (mainly to achieve O(1) time comp
 5. **String uniqueKey** - unique string for any graph that is built from 7 randomly chosen characters which are being generated from range 0-128  ( so it is 128^7 possible combinations for every graph) every time a change is being committed to the graph. 
 
 ###                 Methods :
-
 * **WGraph_DS()** - Constructor method for WGrpah_DS class mainly sets all the parameters to their default values, generates a 7 digit 128-bit unique key for this graph, and makes the HashMap of contained nodes a new data structure object.
 * **void ranGenerateNewUniqueKey()** - Method which is generating a new unique key for the graph with every its change (numOfChanges parameter increment), each time this method generates 7 characters 128-bit unique String, therefore there are 128^7 possibilities for each key.
 * **node_info getNode(int key)** - Returns the node_info by the  given node_id, return null if there is no such node in the grpah . Runs in O(1) complexity .
@@ -91,15 +86,12 @@ Mainly works using two HashMap data structures (mainly to achieve O(1) time comp
 ## WGraph_Algo
 
 ###                 Abstract Description :
-
 WGraph__Algo class which is implementing weighted_graph_algorithms interface mainly represents a class with a set of basic methods that might get applied to a weighted graph data structure.
 
 ###                 Contained parameters : 
-
 1. Parameter of a WGraph_DS class which is implementing weighted_grpah_algorithms.
 
 ###                 Methods :
-
 * **WGraph_Algo()** - Constructor method which initializes as new WGraph_DS object the weighted_graph g parameter .
 * **void init(weighted_graph g)** - Method which makes the parameter this.g to point on the inputted graph g.
 * **weighted_graph getGraph()** - Method which returns a pointer to the this.g graph this class is working on.
@@ -121,4 +113,3 @@ WGraph__Algo class which is implementing weighted_graph_algorithms interface mai
 * **void buildPath(LinkedList<node_info> path, int src, int dest)** - Helping method which is used after the running of Dijkstra(int src) method in shortestPath(int src, int dest), this method is building a path from the destination node to the source, using LinkedList ability to add parameters to the end of the list and therefore "inverting" the order so it will return as a list of a route from the source to the destination node. The building is simply adding each node (starting at the destination node) parent parameter to the list which is being determined by the Dijkstra(int src) method.
 * **boolean save(String file)** - Saves this weighted (undirected) graph to the given file name using Serialized interface implemented by WGraph_DS and NodeInfo classes.
 * **boolean load(String file)** - This method load a graph to this graph algorithm. If the file was successfully loaded - the underlying graph of this class will be changed (to the loaded one), in case the graph was not loaded the original graph should remain "as is". This method is using the equals method in WGraph_DS class, in case the uploaded graph is equal to the already contained in this class graph the graph will not get updated. Returns true if the graph was uploaded successfully, false otherwise. 
-
