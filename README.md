@@ -1,4 +1,4 @@
-# OOP Course Exercise 1 .
+# OOP Course Exercise 1: Weighted Directed Graph DS Implementation With Algorithms And Tests .
 
 ##### @author: Victor.Kushnir
 
